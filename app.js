@@ -7,13 +7,26 @@ app.set('views', __dirname + '/views');
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser());
 
+var findSuccess = {}
+
 app.get('/', function(req, res) {
-	res.render('index');
+	res.render('index', {
+		redirectData: findSuccess
+	});
+
 });
+
+
+
+app.get('/success', function(req, res) {
+	res.send('<h1>Success!</h1>')
+});
+
 
 
 app.post('/formsubmit', function(req, res){
 	var postedData = req.body;
+	res.redirect('/success')
 
 });
 
